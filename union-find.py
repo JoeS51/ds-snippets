@@ -18,7 +18,7 @@ class UnionFind:
             return False
         if self.size[root_A] < self.size[root_B]:
             self.parent[root_A] = root_B
-            self.size[root_B] += self.size[root_B]
+            self.size[root_B] += self.size[root_A]
         else:
             self.parent[root_B] = root_A
             self.size[root_A] += self.size[root_B]
