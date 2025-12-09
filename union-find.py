@@ -4,6 +4,7 @@ class UnionFind:
     def __init__(self, n):
         self.parent = [node for node in range(n)]
         self.size = [1] * n
+        self.components = n # optional
     
     def find(self, A):
         if self.parent[A] == A:
@@ -16,6 +17,8 @@ class UnionFind:
         root_B = self.find(B)
         if root_A == root_B:
             return False
+
+        self.components -= 1
         if self.size[root_A] < self.size[root_B]:
             self.parent[root_A] = root_B
             self.size[root_B] += self.size[root_A]
@@ -23,4 +26,7 @@ class UnionFind:
             self.parent[root_B] = root_A
             self.size[root_A] += self.size[root_B]
         return True
+
+    def is_fully_connected(self):
+        return self.components == 1
 
